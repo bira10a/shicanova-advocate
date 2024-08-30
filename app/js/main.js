@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  const preloader = () => {
+    document.body.classList.add('lock');
+    window.setTimeout(() => {
+      document.body.classList.remove('lock');
+      document.body.classList.add('loaded');
+    }, 3000);
+  };
+  preloader();
+
   // табы
   const Tabs = () => {
     const tabsParent = document.querySelector('.services__tabs'),
