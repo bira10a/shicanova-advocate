@@ -1,0 +1,129 @@
+.footer {
+  padding: 30px 0 10px 0;
+  background: linear-gradient(180deg, #edf2f4, #415a77, #283e57, #162940, #0d1b2a);
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.7);
+
+    @include r(950) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  &__logoContainer {
+    @include r(950) {
+      order: 3;
+      text-align: center;
+    }
+  }
+
+  &__logo {
+    display: block;
+    margin-bottom: 15px;
+    border-radius: 6px;
+  }
+
+  &__title {
+    @include adaptiveValue("font-size", 26, 18);
+    margin-bottom: 10px;
+  }
+
+  &__contacts {
+    @include r(950) {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__contacts-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__contacts-item {
+    margin-bottom: 10px;
+  }
+
+  &__contacts--link {
+    outline: transparent;
+
+    &:focus {
+      box-shadow: 2px -2px 19px 3px #e0edcf;
+    }
+  }
+
+  &__contacts-items {
+    display: flex;
+
+    @include r(950) {
+      justify-content: space-evenly;
+    }
+  }
+
+  &__contacts-itemNetworks {
+    margin-right: 15px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__address {
+    align-self: flex-start;
+
+    @include r(950) {
+      align-self: center;
+      margin-bottom: 15px;
+    }
+  }
+
+  &__developer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 30px 0 10px 0;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    padding: 5px;
+
+    @include r(950) {
+      order: 4;
+    }
+  }
+
+  &__developer-text {
+    margin-right: 5px;
+  }
+
+  &__developer-name {
+    display: flex;
+    align-items: center;
+    font-family: 'MarckScript', sans-serif;
+    font-size: rem(22);
+    transition: filter linear 0.3s, color linear 0.3s;
+    outline: transparent;
+    border-radius: 10px;
+    padding: 5px;
+
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      background-image: url('../images/developer.png');
+    }
+    
+    &:hover {
+      color: $accent;
+    }
+
+    &:focus {
+      filter: drop-shadow(0px -1px 10px #e0edcf);
+    }
+  }
+}

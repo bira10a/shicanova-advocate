@@ -1,0 +1,96 @@
+.certificates {
+  padding: 30px 0;
+  background: linear-gradient(90deg, #d58744, #7d93bf, #ffffff);
+
+  @include r(996) {
+    padding: 20px 0;
+  }
+
+  @include r(576) {
+    padding: 15px 0;
+  }
+
+  &__item a {
+    cursor: url(../images/cursor.png), auto;
+  }
+
+  &__img {
+    @include r(1026) {
+      width: 290px;
+      height: 400px;
+    }
+
+    @include r(805) {
+      height: 350px;
+    }
+
+    @include r(769) {
+      width: 260px;
+    }
+
+    @include r(540) {
+      margin: 0 auto;
+    }
+    
+  }
+}
+
+  /* Ограничивающая оболочка */
+  .slick-list {
+    overflow: hidden;
+  }
+
+  /* Лента слайдов */
+  .slick-track {
+    display: flex;
+    gap: 20px;
+    cursor: url(../images/cursor.png), auto;
+
+    @include r(769) {
+      gap: 60px;
+    }
+
+    @include r(640) {
+      @include adaptiveValue("gap", 50, 10);
+    }
+  }
+
+
+  /* Стрелка */
+  .slick-arrow {
+    display: none;
+  }
+
+  /* Точки (булиты) */
+  .slick-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .slick-dots li {
+    margin-right: 15px;
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  /* Активная точка */
+  .slick-dots li.slick-active button {
+    border-color: whitesmoke;
+    box-shadow: 2px 1px 13px 10px rgb(255 255 255 / 25%);
+  }
+
+  /* Элемент точки */
+  .slick-dots li button {
+    font-size: rem(0);
+    border: 1px solid #294360;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    outline: transparent;
+  }
+

@@ -1,0 +1,117 @@
+.proceed {
+  @extend %bg-img;
+  padding: 30px 0;
+  background-color: rgba(105, 76, 76, 0.264);
+  background-attachment: fixed;
+  z-index: 1;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: rgba(9,8,8,.7);
+  }
+
+  @include r(786) {
+    background-attachment: scroll;
+    background-position: 25% 0%;
+  }
+
+  &__title {
+    color: wheat;
+    @include adaptiveValue("font-size", 42, 26);
+
+    @include r(1201) {
+      @include adaptiveValue("font-size", 36, 26);
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    counter-reset: number;
+
+    @include r(1201) {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    box-shadow: 0 3px 3px rgb(0 0 0 / 25%);
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, .35);
+    list-style: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: rem(16);
+    padding: 5px 5px 10px;
+    border-radius: 10px;
+    transition: transform 0.4s linear;
+
+    &::before {
+      counter-increment: number;
+      content: counter(number);
+      @include adaptiveValue("font-size", 45, 22);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    &:nth-of-type(odd) {
+      color: $default;
+
+      &::before {
+        color: $accent;
+      }
+    }
+    &:nth-of-type(even) {
+      color: $accent;
+
+      &::before {
+        color: $default;
+      }
+    }
+
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+
+  &__item--services {
+    position: relative;
+
+    &::after {
+      content: "Данная услуга считается дополнительной и оплачивается отдельно";
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $accent;
+      font-size: rem(20);
+      border-radius: 10px;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgb(20 20 20 / 85%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s linear;
+    }
+
+    &:hover {
+      &::after {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}

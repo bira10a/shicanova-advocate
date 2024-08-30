@@ -1,0 +1,39 @@
+.statistics {
+  padding: 40px 0;
+  background-color: wheat;
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+
+  &__item {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  &__number {
+    color: $accent;
+    @include adaptiveValue("font-size", 45, 24);
+  }
+  
+  &__number-num {
+    font-weight: 600;
+  }
+
+  &__icon {
+    display: block;
+    width: 171px;
+    height: 18px;
+    margin-bottom: 15px;
+  }
+  
+  &__text {
+    color: $titleColor;
+    font-size: rem(16);
+  }
+}

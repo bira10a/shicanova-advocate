@@ -1,0 +1,371 @@
+.services {
+  background-color: pink;
+  min-height: 100vh;
+  @extend %bg-img;
+  position: relative;
+  background-attachment: fixed;
+  padding-bottom: 20px;
+
+  @include r(786) {
+    background-attachment: scroll;
+    background-position: 70% 0%;
+  }
+
+  &::before {
+    @include pseudo;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(139 138 141 / 70%);
+  }
+
+  &__title {
+    padding-top: 55px;
+    z-index: 1;
+    position: relative;
+
+    &::before,
+    &::after {
+      @include pseudo;
+      width: 40px;
+      height: 40px;
+      mask: url('../images/sprite.svg#1') center / cover no-repeat;
+      background-color: $titleColor;
+      top: 59%;
+    }
+
+    &::before {
+      left: 23%;
+
+      @include r(1190) {
+        left: 21%;
+      }
+
+      @include r(1180) {
+        left: 18%;
+      }
+
+      @include r(996) {
+        left: 22%;
+        top: 47%;
+      }
+
+      @include r(900) {
+        left: 20%;
+        top: 42%;
+      }
+
+      @include r(810) {
+        left: 16%;
+      }
+
+      @include r(710) {
+        left: 12%;
+      }
+
+      @include r(620) {
+        left: 6%;
+      }
+
+      @include r(540) {
+        left: 1%;
+      }
+
+      @include r(480) {
+        display: none;
+      }
+    }
+
+    &::after {
+      right: 24%;
+
+      @include r(1190) {
+        right: 22%;
+      }
+
+      @include r(1180) {
+        right: 18%;
+      }
+
+      @include r(996) {
+        right: 22%;
+        top: 49%;
+      }
+
+      @include r(900) {
+        right: 20%;
+        top: 45%;
+      }
+      
+      @include r(810) {
+        right: 16%;
+      }
+
+      @include r(710) {
+        right: 12%;
+      }
+
+      @include r(620) {
+        right: 6%;
+      }
+
+      @include r(540) {
+        right: 1%;
+      }
+
+      @include r(480) {
+        display: none;
+      }
+    }
+
+    @include r(996) {
+      @include adaptiveValue("padding-top", 35, 20);
+      @include adaptiveValue("font-size", 35, 27);
+    }
+  }
+
+  &__tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 35px;
+    z-index: 1;
+  }
+
+  &__tab { 
+    font-size: rem(30);
+    font-weight: 600;
+    margin-right: 30px;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.2s linear;
+
+    @include r(996) {
+      @include adaptiveValue("font-size", 30, 23);
+    }
+
+    @include r(650) {
+      margin-right: 20px;
+      font-size: rem(16);
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__tab--active {
+    color: $accent;
+
+    &::before,
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      background-color: $accent;
+      left: 0;
+      animation: fade 0.5s linear;
+    }
+
+    &::before {
+      height: 2px;
+      bottom: -5px;
+    }
+
+    &::after {
+      bottom: -10px;
+      height: 3px;
+    }
+  }
+
+  &__item--hide {
+    display: none;
+  }
+
+  &__item--show {
+    display: block;
+    animation: fade 0.5s linear;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    position: relative;
+  }
+
+  &__list {
+    display: grid;
+    @include adaptiveValue("grid-gap", 40, 10);
+    grid-template-columns: repeat(3, 1fr);
+
+    @include r(1201) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__list-item {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    align-items: center;
+    font-size: rem(18);
+    color: #13181D;
+    box-shadow: 0 3px 3px rgb(0 0 0 / 25%);
+    border-radius: 6px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: rgb(255 255 255 / 25%);
+    transition: all linear 0.4s;
+
+    span {
+      max-width: 270px;
+      overflow: hidden;
+      position: relative;
+
+      &::before {
+        @include pseudo;
+        width: 30px;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgb(175 166 193 / 25%);
+        animation: beforeDecoration 7s linear infinite;
+      }
+
+      @include r(650) {
+        font-size: rem(14);
+      }
+    }
+
+    @include r(890) {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+
+  &__list-icon {
+    display: block;
+    width: 56px;
+    height: 56px;
+    margin-right: 15px;
+
+    @include r(890) {
+      margin-right: 0;
+      margin-bottom: 15px;
+    }
+
+    @include r(650) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  &__popap-title {
+    font-family: 'RobotoSlab', sans-serif;
+    font-weight: 600;
+    @include adaptiveValue("font-size", 24, 20);
+    color: whitesmoke;
+    text-align: center;
+    margin-bottom: 15px;
+    position: relative;
+
+    &::before,
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      background-color: whitesmoke;
+      left: 0;
+    }
+
+    &::before {
+      height: 2px;
+      bottom: -5px;
+    }
+
+    &::after {
+      bottom: -10px;
+      height: 3px;
+    }
+  }
+
+  &__popap-text {
+    h5 {
+      font-family: 'RobotoSlab', sans-serif;
+      font-weight: 600; 
+      @include adaptiveValue("font-size", 22, 20);
+      color: whitesmoke;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    span {
+      display: block;
+      margin-bottom: 10px;
+      text-align: justify;
+      text-indent: 20px;
+      @include adaptiveValue("font-size", 22, 18);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    ol {
+      list-style: circle;
+      margin-left: 15px;
+      @include adaptiveValue("font-size", 22, 18);
+    }
+  }
+
+  &__popap-close{
+    width: 40px;
+    height: 40px;
+    border: 1px solid $titleColor;
+    border-radius: 50%;
+    box-shadow: 2px 1px 13px 10px rgb(255 255 255 / 25%);
+    margin-left: auto;
+    margin-bottom: 10px;
+    transition: all linear 0.2s;
+
+    &:hover {
+      border-color: $accent;
+      box-shadow: 2px 1px 13px 10px rgb(255 181 72 / 25%);
+    }
+    
+    &:active {
+      box-shadow: 2px 1px 13px 10px rgb(255 255 255 / 25%);
+    }
+  }
+}
+
+
+@keyframes fade {
+  0% {
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+
+@keyframes beforeDecoration {
+  0% {
+    transform: skew(-30deg) translateX(-200px);
+  }
+
+  20% {
+    transform: skew(-30deg) translateX(+600px);
+  }
+
+  100% {
+    transform: skew(-30deg) translateX(+600px);
+  }
+}

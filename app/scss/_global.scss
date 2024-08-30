@@ -1,0 +1,239 @@
+html,
+body {
+  height: 100%;
+}
+
+// НАСТРОЙКИ ===============================================================================================================================================================================================================================================================================================
+// Минимальная ширина страницы
+$minWidth: 320;
+// Ширина полотна (макета)
+$maxWidth: 1920;
+// Ширина ограничивающего контейнера (0 = нет ограничения)
+$maxWidthContainer: 1230;
+// Общий отступ у контейнера
+// (30 = по 15px слева и справа, 0 = нет отступа)
+$containerPadding: 30;
+
+// Ширина срабатывания первого брейкпоинта
+$containerWidth: $maxWidthContainer + $containerPadding;
+
+// Брейк-поинты
+$pc: em($containerWidth); // ПК, ноутбуки, некоторые планшеты в горизонтальном положении
+$tablet: em(991.98); // Планшеты, некоторые телефоны в горизонтальном положении
+$mobile: em(767.98); // Телефоны L
+$mobileSmall: em(479.98); // Телефоны S
+
+// Тип адаптива:
+// 1 = отзывчивость (у контейнера нет брейкпоинтов),
+// 2 = по брейк-поинтам (контейнер меняет свою ширину по брейк-поинтам)
+$responsiveType: 1;
+
+// Ограничивающий контейнер ======================================================================================================================================================================================================================
+
+/*
+(i) Стили будут применяться ко 
+всем классам содержащим *__container
+Например header__container, main__container и т.д.
+Снипет (HTML): cnt
+*/
+@if ($responsiveType==1) {
+
+  // Отзывчивая
+  [class*="__container"] {
+    @if ($maxWidthContainer>0) {
+      max-width: rem($maxWidthContainer);
+      box-sizing: border-box;
+      margin: 0 auto;
+    }
+
+    @if ($containerPadding>0) {
+      padding: 0 rem(math.div($containerPadding, 2));
+    }
+  }
+}
+
+@else {
+
+  // По брейк-поинтам
+  [class*="__container"] {
+    margin: 0 auto;
+
+    @if ($maxWidthContainer>0) {
+      max-width: rem($maxWidthContainer);
+      box-sizing: content-box;
+    }
+
+    @else {
+      @if ($containerPadding>0) {
+        padding: 0 rem(math.div($containerPadding, 2));
+      }
+    }
+
+    @media (max-width: $pc) {
+      max-width: rem(970);
+    }
+
+    @media (max-width: $tablet) {
+      max-width: rem(750);
+    }
+
+    @media (max-width: $mobile) {
+      max-width: none;
+
+      @if ($containerPadding>0 and $maxWidthContainer>0) {
+        padding: 0 rem(math.div($containerPadding, 2));
+      }
+    }
+  }
+}
+
+body {
+  font-family: 'RobotoSlab', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  color: $default;
+  background-color: $default;
+  display: flex;
+  flex-direction: column;
+}
+.main {
+  flex-grow: 1;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.title {
+  font-family: 'Montserrat', sans-serif;
+  @include adaptiveValue("font-size", 42, 26);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.03em;
+  color: $titleColor;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.logo {
+  outline: transparent;
+  transition: filter 0.3s linear;
+  
+  &:focus {
+      filter: drop-shadow(0px -1px 10px #e0edcf);
+    }
+}
+
+#overlay {
+  position: fixed;
+  /* Sit on top of the page content */
+  display: none;
+  /* Hidden by default */
+  width: 100%;
+  /* Full width (cover the whole page) */
+  height: 100%;
+  /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Black background with opacity */
+  z-index: 200;
+  /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer;
+  /* Add a pointer on hover */
+}
+
+
+
+//======================================================================================================================================================== для реализации бургера, вешаем класс на body
+
+.lock {
+  overflow: hidden;
+}
+
+
+
+.modal__box::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: 0 0;
+}
+
+.modal__box::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  border-left: 1px solid #eee9e9;
+  background: $accent;
+}
+
+.modal__box::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: .5%;
+  min-width: 10px;
+}
+
+@function max($numbers...) {
+ @return m#{a}x(#{$numbers});
+}
+@function min($numbers...) {
+ @return m#{i}n(#{$numbers});
+}
+
+.popap {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background-color: rgb(19 24 29 / 83%);
+  overflow-y: auto;
+  overflow-x: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.8s ease 0s;
+  
+  &__body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: $accent;
+    font-size: rem(22);
+    padding: 30px 10px;
+  }
+  
+  &__content {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    max-width: 1200px;
+    padding: 20px;
+    transform: perspective(600px) translate(0, -100%) rotateX(45deg);
+    opacity: 0;
+    transition: all 0.8s ease 0s;
+    background: linear-gradient(90deg, #222333, #444628);
+    border-radius: 15px;
+  }
+}
+
+.popap--active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popap--active .popap__content {
+  transform: perspective(600px) translate(0, 0%) rotateX(0deg);
+  opacity: 1;
+}
+

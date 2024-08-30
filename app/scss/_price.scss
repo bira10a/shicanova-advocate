@@ -1,0 +1,177 @@
+.price {
+  @extend %bg-img;
+  min-height: 100vh;
+  padding: 30px 0;
+
+  &__title {
+    text-transform: uppercase;
+    color: $default;
+  }
+
+  &__info {
+    @include adaptiveValue("font-size", 18, 16);
+    text-align: center;
+    @include adaptiveValue("padding-top", 25, 10);
+    @include adaptiveValue("padding-bottom", 25, 10);
+    @include adaptiveValue("padding-left", 110, 10);
+    @include adaptiveValue("padding-right", 110, 10);
+    border: 4px solid #fec576;
+    @include adaptiveValue("margin-bottom", 30, 15);
+  }
+
+  &__info-title {
+    display: block;
+    font-size: rem(20);
+    color: $accent;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  &__info-strong {
+    color: $accent;
+    font-weight: 600;
+  }
+
+  &__subtitle {
+    text-transform: uppercase;
+    text-align: center;
+    @include adaptiveValue("font-size", 36, 22);
+    margin-bottom: 20px;
+
+    &::after {
+      content: "";
+      display: block;
+      max-width: 807px;
+      height: 45px;
+      background-image: url(../images/price-icon.png);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      margin: 0 auto;
+      margin-top: 20px;
+    }
+
+    @include r(768) {
+      &::after {
+        max-width: 335px;
+        height: 20px;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @include adaptiveValue("margin-bottom", 30, 15);
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 30px 15px;
+    background-color: #b38339;
+    border-radius: 6px;
+    box-shadow: 5px 4px 5px 3px rgb(255 255 255 / 25%);
+    @include adaptiveValue("font-size", 18, 14);
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &::before {
+      @include pseudo;
+      width: 30px;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgb(175 166 193 / 25%);
+      animation: beforeDecoration 7s linear infinite;
+    }
+
+    @include r(992) {
+      padding: 10px 5px;
+      margin-bottom: 15px;
+    }
+
+    @include r(577) {
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+    }
+  }
+
+  &__item-text {
+    padding-right: 10px;
+    color: #13181d;
+
+    @include r(577) {
+      padding-right: 0;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__item-num {
+    flex-shrink: 0;
+    cursor: pointer;
+
+    &:hover ~ .price__item-info {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__item-info {
+    position: absolute;
+    top: -13px;
+    right: 0;
+    background: linear-gradient(180deg, #edf2f4, #415a77, #283e57, #162940, #0d1b2a);
+    text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all linear 0.4s;
+    z-index: 1;
+
+    @include r(992) {
+      top: 0;
+      right: 150px;
+      padding: 5px;
+    }
+
+    @include r(577) {
+      top: 8px;
+      right: 74px;
+    }
+  }
+
+  &__footer {
+    @include adaptiveValue("font-size", 18, 20);
+    text-align: center;
+    padding: 10px 0;
+    border-top: 2px solid $accent;
+    border-bottom: 2px solid $accent;
+  }
+}
+
+@keyframes beforeDecoration {
+  0% {
+    transform: skew(-30deg) translateX(-2000px);
+  }
+
+  20% {
+    transform: skew(-30deg) translateX(+2000px);
+  }
+
+  100% {
+    transform: skew(-30deg) translateX(+2000px);
+  }
+}

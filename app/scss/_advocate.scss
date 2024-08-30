@@ -1,0 +1,146 @@
+.advocate {
+  @extend %bg-img;
+  width: 100%;
+  position: relative;
+
+  &::before {
+    @include pseudo;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(9 8 8 / 70%);
+  }
+  
+  &__container {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 90px;
+
+    @include r(1280) {
+      padding-top: 60px;
+    }
+
+    @include r(690) {
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    @media (max-height: 415px) {
+      padding-top: 140px;
+    }
+  }
+
+  &__content {
+    z-index: 1;
+    flex-shrink: 60;
+  }
+
+  &__title {
+    color: $accent;
+    max-width: 490px;
+    margin-bottom: 60px;
+    @include adaptiveValue("font-size", 48, 24);
+
+    span {
+      color: $default;
+    }
+
+    @include r(690) {
+      margin-bottom: 30px;
+    }
+
+    @include r(378) {
+      margin-bottom: 15px;
+    }
+
+    @media (max-height: 415px) {
+      margin-bottom: 20px;
+      font-size: rem(24);
+    }
+  }
+
+  &__list {
+    display: flex;
+    align-items: baseline;
+
+    @include r(690) {
+      flex-direction: column;
+    }
+
+    @media (max-height: 376px) {
+      flex-direction: row;
+    }
+  }
+
+  &__item {
+    margin-right: 30px;
+    max-width: 210px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    @include r(690) {
+      margin-right: 0;
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    @include r(376) {
+      max-width: 190px;
+      margin-bottom: 10px;
+    }
+
+    @media (max-height: 415px) {
+      max-width: 150px;
+    }
+
+    @media (max-height: 376px) {
+      margin-bottom: 0;
+      margin-right: 10px;
+      max-width: 130px;
+      font-size: rem(12);
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__icon {
+    display: block;
+    width: 50px;
+    height: 56px;
+    margin-bottom: 15px;
+  }
+
+  &__images {
+    z-index: 1;
+    flex-shrink: 1;
+
+    @include r(690) {
+      position: absolute;
+      top: 36%;
+      right: -70px;
+    }
+
+    @media (max-height: 415px) {
+      position: absolute;
+      top: 23%;
+      right: 44px;
+    }
+
+    @media (max-height: 376px) {
+      right: -75px;
+    }
+  }
+
+  &__img {
+    z-index: 1;
+  }
+}
