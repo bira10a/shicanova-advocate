@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.remove('lock');
       document.body.classList.add('loaded');
     }, 3000);
+    window.setTimeout(() => {
+      document.querySelector('.loading').remove();
+    }, 4600);
   };
   preloader();
 
